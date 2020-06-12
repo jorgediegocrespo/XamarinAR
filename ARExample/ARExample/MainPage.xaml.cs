@@ -25,7 +25,7 @@ namespace ARExample
             ArScene.PauseSession?.Invoke();
         }
 
-        private void btAddButton_Clicked(System.Object sender, System.EventArgs e)
+        private void BtAddBox_Clicked(System.Object sender, System.EventArgs e)
         {
             ArScene.AddBox();
         }
@@ -33,6 +33,16 @@ namespace ARExample
         private void btReset_Clicked(System.Object sender, System.EventArgs e)
         {
             ArScene.ResetSession();
+        }
+
+        private void btAddPath_Clicked(System.Object sender, System.EventArgs e)
+        {
+            ArScene.AddPath();
+        }
+
+        void btAddHouse_Clicked(System.Object sender, System.EventArgs e)
+        {
+            ArScene.AddHouse();
         }
     }
 }

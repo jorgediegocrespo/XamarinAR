@@ -17,9 +17,18 @@
                     Orientation="Horizontal">
             <StackLayout Orientation="Horizontal"
                          Spacing="10">
-                <Button x:Name="btAddButton"
-                        Text="Add"
-                        Clicked="btAddButton_Clicked" />
+
+                <Button x:Name="btAddBox"
+                        Text="Add Box"
+                        Clicked="BtAddBox_Clicked" />
+
+                <Button x:Name="btAddPath"
+                        Text="Add Path"
+                        Clicked="btAddPath_Clicked" />
+
+                <Button x:Name="btAddHouse"
+                        Text="Add House"
+                        Clicked="btAddHouse_Clicked" />
 
                 <Button x:Name="btReset"
                         Text="Reset"
