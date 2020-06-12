@@ -79,6 +79,9 @@ namespace ARExample.iOS.Renderers
             sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints | ARSCNDebugOptions.ShowWorldOrigin;
             sceneView.Session.Run(config, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
 
+            //Permite añadir reflejos a los objetos de la escena
+            sceneView.AutoenablesDefaultLighting = true;
+
             //sceneView.Session.Run(new ARWorldTrackingConfiguration
             //{
             //    AutoFocusEnabled = true,
@@ -116,6 +119,8 @@ namespace ARExample.iOS.Renderers
             SCNNode boxNode = new SCNNode();
             boxNode.Geometry = SCNBox.Create(0.1f, 0.1f, 0.1f, 0);
             boxNode.Geometry.Materials = new SCNMaterial[] { material };
+            boxNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            boxNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Blue; //Color del objeto
             boxNode.Position = new SCNVector3(0, 0, -0.3f);
 
             sceneView.Scene.RootNode.AddChildNode(boxNode);
