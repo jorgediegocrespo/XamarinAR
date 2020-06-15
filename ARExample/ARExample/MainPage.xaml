@@ -3,37 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:ARExample.Controls"
              x:Class="ARExample.MainPage">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="80" />
-        </Grid.RowDefinitions>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
 
-        <controls:ArView x:Name="ArScene"
-                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        <Button x:Name="btNodes"
+                Text="Node types"
+                Clicked="btNodes_Clicked" />
 
-        <ScrollView Grid.Row="1"
-                    Padding="20"
-                    Orientation="Horizontal">
-            <StackLayout Orientation="Horizontal"
-                         Spacing="10">
+        <Button x:Name="btSolarSistem"
+                Text="Sistema solar"
+                Clicked="btSolarSistem_Clicked" />
 
-                <Button x:Name="btAddBox"
-                        Text="Add Box"
-                        Clicked="BtAddBox_Clicked" />
-
-                <Button x:Name="btAddPath"
-                        Text="Add Path"
-                        Clicked="btAddPath_Clicked" />
-
-                <Button x:Name="btAddHouse"
-                        Text="Add House"
-                        Clicked="btAddHouse_Clicked" />
-
-                <Button x:Name="btReset"
-                        Text="Reset"
-                        Clicked="btReset_Clicked" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+    </StackLayout>
 </ContentPage>

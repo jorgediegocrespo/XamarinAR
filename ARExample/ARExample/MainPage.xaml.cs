@@ -13,36 +13,14 @@ namespace ARExample
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        private async void btNodes_Clicked(System.Object sender, System.EventArgs e)
         {
-            base.OnAppearing();
-            ArScene.RunSession?.Invoke();
+            await Navigation.PushAsync(new NodesView());
         }
 
-        protected override void OnDisappearing()
+        private async void btSolarSistem_Clicked(System.Object sender, System.EventArgs e)
         {
-            base.OnDisappearing();
-            ArScene.PauseSession?.Invoke();
-        }
-
-        private void BtAddBox_Clicked(System.Object sender, System.EventArgs e)
-        {
-            ArScene.AddBox();
-        }
-
-        private void btReset_Clicked(System.Object sender, System.EventArgs e)
-        {
-            ArScene.ResetSession();
-        }
-
-        private void btAddPath_Clicked(System.Object sender, System.EventArgs e)
-        {
-            ArScene.AddPath();
-        }
-
-        void btAddHouse_Clicked(System.Object sender, System.EventArgs e)
-        {
-            ArScene.AddHouse();
+            await Navigation.PushAsync(new SolarSistemView());
         }
     }
 }

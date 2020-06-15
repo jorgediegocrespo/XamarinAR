@@ -69,11 +69,7 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\ArViewRenderer\ArViewRenderer.cs" />
-    <Compile Include="Renderers\ArViewRenderer\CubeNode.cs" />
-    <Compile Include="Renderers\ArViewRenderer\SphereNode.cs" />
-    <Compile Include="Renderers\ArViewRenderer\PlaneNode.cs" />
-    <Compile Include="Renderers\ArViewRenderer\TextNode.cs" />
-    <Compile Include="Renderers\ArViewRenderer\ImageNode.cs" />
+    <Compile Include="Renderers\ArViewRenderer\CustomArScnViewDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -145,5 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
+    <BundleResource Include="Resources\EarthTexture.jpg" />
   </ItemGroup>
 </Project>

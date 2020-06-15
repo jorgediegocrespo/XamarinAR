@@ -42,6 +42,8 @@ namespace ARExample.iOS.Renderers
             Element.AddPath = AddPath;
             Element.AddHouse = AddHouse;
 
+            Element.DrawSolarSistem = DrawSolarSistem;
+
             SetNativeControl(sceneView);
         }
 
@@ -78,12 +80,15 @@ namespace ARExample.iOS.Renderers
         private void RunSession()
         {
             config?.Dispose();
+            sceneView?.Delegate?.Dispose();
+
             config = new ARWorldTrackingConfiguration();
             sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints | ARSCNDebugOptions.ShowWorldOrigin;
             sceneView.Session.Run(config, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
 
             //Permite añadir reflejos a los objetos de la escena
             sceneView.AutoenablesDefaultLighting = true;
+            sceneView.Delegate = new CustomArScnViewDelegate(sceneView);
         }
 
         private void PauseSession()
@@ -175,12 +180,14 @@ namespace ARExample.iOS.Renderers
             boxNode.AddChildNode(window2);
         }
 
-        private void ShowRotatedCube()
+        private void DrawSolarSistem()
         {
-            CubeNode cubeNode = new CubeNode(0.05f, UIColor.Red, 0);
-            cubeNode.Position = new SCNVector3(0, 0, 0);
-            cubeNode.Rotation = new SCNVector4(0, 0, 1, ConvertDegreesToRadians(45));
-            sceneView.Scene.RootNode.AddChildNode(cubeNode);
+            var earth = new SCNNode();
+            earth.Geometry = SCNSphere.Create(0.2f);
+            earth.Geometry.FirstMaterial.Diffuse.Contents = new UIImage("EarthTexture.jpg");
+            earth.Position = new SCNVector3(0, 0, -1);
+
+            sceneView.Scene.RootNode.AddChildNode(earth);
         }
 
         private void ShowDistinctNodes()
@@ -246,68 +253,6 @@ namespace ARExample.iOS.Renderers
             pyramidNode.AddChildNode(planeNode);
             planeNode.AddChildNode(capsuleNode);
         }
-
-        private void ShowCustomNodes()
-        {
-            //Add a cube
-            CubeNode cubeNode = new CubeNode(0.05f, UIColor.Red, 0);
-            cubeNode.Position = new SCNVector3(0, 0, 0);
-            cubeNode.Rotation = new SCNVector4(0, 0, 1, ConvertDegreesToRadians(45));
-            sceneView.Scene.RootNode.AddChildNode(cubeNode);
-
-            //Add a sphere
-            SphereNode sphereNode = new SphereNode(0.03f, UIColor.White, 0.7f);
-            sphereNode.Position = new SCNVector3(0.1f, 0, 0);
-            sceneView.Scene.RootNode.AddChildNode(sphereNode);
-
-            //Text
-            TextNode textNode = new TextNode("Hello Universe", UIColor.Orange, 0.5f);
-            textNode.Position = new SCNVector3(0, -0.6f, 0);
-            sceneView.Scene.RootNode.AddChildNode(textNode);
-
-            //Image
-            ImageNode imageNode = new ImageNode("Monkey1.jpg", 0, 0.6f);
-            imageNode.Position = new SCNVector3(0, 0, 0);
-            sceneView.Scene.RootNode.AddChildNode(imageNode);
-        }
-
-        private void ShowNodesInAllSides()
-        {
-            var size = 0.05f;
-            var distanceAway = 1f;
-
-            // Front
-            SphereNode cubeNodeFront = new SphereNode(size, UIColor.Yellow, 1);
-            cubeNodeFront.Position = new SCNVector3(distanceAway, 0, 0);
-            sceneView.Scene.RootNode.AddChildNode(cubeNodeFront);
-
-            // Back
-            SphereNode cubeNodeBack = new SphereNode(size, UIColor.Blue, 0.9f);
-            cubeNodeBack.Position = new SCNVector3(-distanceAway, 0, 0);
-            sceneView.Scene.RootNode.AddChildNode(cubeNodeBack);
-
-            // Right
-            SphereNode cubeNodeRight = new SphereNode(size, UIColor.Red, 0.8f);
-            cubeNodeRight.Position = new SCNVector3(0, 0, distanceAway);
-            sceneView.Scene.RootNode.AddChildNode(cubeNodeRight);
-
-            // Left
-            SphereNode cubeNodeLeft = new SphereNode(size, UIColor.Green, 0.7f);
-            cubeNodeLeft.Position = new SCNVector3(0, 0, -distanceAway);
-            sceneView.Scene.RootNode.AddChildNode(cubeNodeLeft);
-
-            // Above
-            SphereNode cubeNodeAbove = new SphereNode(size, UIColor.Orange, 0.6f);
-            cubeNodeAbove.Position = new SCNVector3(0, distanceAway, 0);
-            sceneView.Scene.RootNode.AddChildNode(cubeNodeAbove);
-
-            // Below
-            SphereNode cubeNodeBelow = new SphereNode(size, UIColor.Purple, 0.5f);
-            cubeNodeBelow.Position = new SCNVector3(0, -distanceAway, 0);
-            sceneView.Scene.RootNode.AddChildNode(cubeNodeBelow);
-        }
-
-        
 
         private float ConvertDegreesToRadians(float angle)
         {
