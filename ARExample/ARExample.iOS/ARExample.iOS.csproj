@@ -142,5 +142,11 @@
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
     <BundleResource Include="Resources\EarthTexture.jpg" />
+    <BundleResource Include="Resources\EarthSpecular.tif" />
+    <BundleResource Include="Resources\EarthClouds.jpg" />
+    <BundleResource Include="Resources\EarthNormal.tif" />
+    <BundleResource Include="Resources\SunTexture.jpg" />
+    <BundleResource Include="Resources\VenusEmission.jpg" />
+    <BundleResource Include="Resources\VenusTexture.jpg" />
   </ItemGroup>
 </Project>
