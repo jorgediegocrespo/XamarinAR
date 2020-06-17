@@ -42,8 +42,6 @@ namespace ARExample.iOS.Renderers
             Element.AddPath = AddPath;
             Element.AddHouse = AddHouse;
 
-            Element.DrawSolarSistem = DrawSolarSistem;
-
             SetNativeControl(sceneView);
         }
 
@@ -178,43 +176,6 @@ namespace ARExample.iOS.Renderers
             window2.Geometry.FirstMaterial.Diffuse.Contents = UIColor.White;
             window2.Position = new SCNVector3(-0.03f, 0.025f, 0.051f);
             boxNode.AddChildNode(window2);
-        }
-
-        private void DrawSolarSistem()
-        {
-            SCNNode sun = new SCNNode();
-            sun.Geometry = SCNSphere.Create(0.2f);
-            sun.Geometry.FirstMaterial.Diffuse.Contents = new UIImage("SunTexture.jpg");
-            sun.Position = new SCNVector3(0, 0, -1);
-            sceneView.Scene.RootNode.AddChildNode(sun);
-
-            AddPlanet(sun.Position, 0.2f, "EarthTexture.jpg", "EarthSpecular.tif", "EarthClouds.jpg", "EarthNormal.tif", 1.2f, 8, 14);
-            AddPlanet(sun.Position, 0.1f, "VenusTexture.jpg", null, "VenusEmission.jpg", null, 0.7f, 6, 10);
-        }
-
-        private void AddPlanet(SCNVector3 sunPosition, float radious, string diffuse, string specular, string emission, string normal, float xPosition, double selfRotation, double sunRotation)
-        {
-            SCNNode parent = new SCNNode();
-            parent.Position = sunPosition;
-            sceneView.Scene.RootNode.AddChildNode(parent);
-
-            SCNNode planet = new SCNNode();
-            planet.Geometry = SCNSphere.Create(radious);
-            planet.Geometry.FirstMaterial.Diffuse.Contents = string.IsNullOrWhiteSpace(diffuse) ? null : new UIImage(diffuse);
-            planet.Geometry.FirstMaterial.Specular.Contents = string.IsNullOrWhiteSpace(specular) ? null : new UIImage(specular);
-            planet.Geometry.FirstMaterial.Emission.Contents = string.IsNullOrWhiteSpace(emission) ? null : new UIImage(emission);
-            planet.Geometry.FirstMaterial.Normal.Contents = string.IsNullOrWhiteSpace(normal) ? null : new UIImage(normal);
-            planet.Position = new SCNVector3(xPosition, 0, 0);
-
-            SCNAction selfAction = SCNAction.RotateBy(0, ConvertDegreesToRadians(360), 0, selfRotation);
-            SCNAction selfForever = SCNAction.RepeatActionForever(selfAction);
-            planet.RunAction(selfForever);
-
-            SCNAction sunAction = SCNAction.RotateBy(0, ConvertDegreesToRadians(360), 0, sunRotation);
-            SCNAction sunForever = SCNAction.RepeatActionForever(sunAction);
-            parent.RunAction(sunForever);
-
-            parent.AddChildNode(planet);
         }
 
         private void ShowDistinctNodes()

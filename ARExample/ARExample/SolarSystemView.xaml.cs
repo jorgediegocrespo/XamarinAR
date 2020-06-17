@@ -21,7 +21,7 @@
 
         private void btSolarSistem_Clicked(System.Object sender, System.EventArgs e)
         {
-            ArScene.DrawSolarSistem?.Invoke();
+            ArScene.DrawSolarSystem?.Invoke();
         }
     }
 }

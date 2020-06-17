@@ -11,6 +11,5 @@ namespace ARExample.Controls
         public Action AddBox { get; set; }
         public Action AddPath { get; set; }
         public Action AddHouse { get; set; }
-        public Action DrawSolarSistem { get; set; }
     }
 }

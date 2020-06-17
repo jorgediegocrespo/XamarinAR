@@ -70,6 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\ArViewRenderer\ArViewRenderer.cs" />
     <Compile Include="Renderers\ArViewRenderer\CustomArScnViewDelegate.cs" />
+    <Compile Include="Renderers\SolarSystemRenderer\SolarSystemRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <Folder Include="Renderers\" />
     <Folder Include="Renderers\ArViewRenderer\" />
+    <Folder Include="Renderers\SolarSystemRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />

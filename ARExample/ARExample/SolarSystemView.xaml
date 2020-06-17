@@ -9,8 +9,8 @@
             <RowDefinition Height="80" />
         </Grid.RowDefinitions>
 
-        <controls:ArView x:Name="ArScene"
-                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        <controls:SolarSystemView x:Name="ArScene"
+                                  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
 
         <ScrollView Grid.Row="1"
                     Padding="20"
