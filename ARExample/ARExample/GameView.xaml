@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ARExample.Controls"
+             x:Class="ARExample.GameView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+
+        <controls:ArGameView x:Name="ArScene"
+                             HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+
+        <ScrollView Grid.Row="1"
+                    Padding="20"
+                    Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10">
+
+                <Button x:Name="btPlay"
+                        Text="Play"
+                        Clicked="btPlay_Clicked" />
+
+                <Button x:Name="btReset"
+                        Text="Reset"
+                        Clicked="btReset_Clicked" />
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

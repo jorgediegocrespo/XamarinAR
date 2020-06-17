@@ -13,5 +13,9 @@
                 Text="Sistema solar"
                 Clicked="btSolarSistem_Clicked" />
 
+        <Button x:Name="btGame"
+                Text="Game"
+                Clicked="btGame_Clicked" />
+
     </StackLayout>
 </ContentPage>

@@ -22,5 +22,10 @@ namespace ARExample
         {
             await Navigation.PushAsync(new SolarSistemView());
         }
+
+        private async void btGame_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new GameView());
+        }
     }
 }

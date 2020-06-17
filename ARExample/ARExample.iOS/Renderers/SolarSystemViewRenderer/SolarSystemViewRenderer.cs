@@ -1,4 +1,4 @@
-﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(ARExample.Controls.SolarSystemView), typeof(ARExample.iOS.Renderers.SolarSystemRenderer))]
+﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(ARExample.Controls.SolarSystemView), typeof(ARExample.iOS.Renderers.SolarSystemViewRenderer))]
 namespace ARExample.iOS.Renderers
 {
     using System;
@@ -9,7 +9,7 @@ namespace ARExample.iOS.Renderers
     using UIKit;
     using Xamarin.Forms.Platform.iOS;
 
-    public class SolarSystemRenderer : ViewRenderer<SolarSystemView, ARSCNView>
+    public class SolarSystemViewRenderer : ViewRenderer<SolarSystemView, ARSCNView>
     {
         private ARSCNView sceneView;
         private ARWorldTrackingConfiguration config;
@@ -55,7 +55,6 @@ namespace ARExample.iOS.Renderers
 
             //Permite añadir reflejos a los objetos de la escena
             sceneView.AutoenablesDefaultLighting = true;
-            sceneView.Delegate = new CustomArScnViewDelegate(sceneView);
         }
 
         private void PauseSession()
