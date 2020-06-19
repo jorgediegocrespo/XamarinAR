@@ -1,11 +1,13 @@
 ﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(ARExample.Controls.ArGameView), typeof(ARExample.iOS.Renderers.ArGameViewRenderer))]
 namespace ARExample.iOS.Renderers
 {
+    using System;
     using System.ComponentModel;
-    using System.Diagnostics;
+    using System.Linq;
+    using System.Threading.Tasks;
     using ARExample.Controls;
     using ARKit;
-    using ObjCRuntime;
+    using CoreAnimation;
     using SceneKit;
     using UIKit;
     using Xamarin.Forms.Platform.iOS;
@@ -14,6 +16,8 @@ namespace ARExample.iOS.Renderers
     {
         private ARSCNView sceneView;
         private ARWorldTrackingConfiguration config;
+        private readonly Random random = new Random();
+        private bool isHandlingTap = false;
 
         protected override void OnElementChanged(ElementChangedEventArgs<ArGameView> e)
         {
@@ -31,9 +35,7 @@ namespace ARExample.iOS.Renderers
             {
                 sceneView = new ARSCNView()
                 {
-                    AutoenablesDefaultLighting = true,
-                    //DebugOptions = ARSCNDebugOptions.ShowWorldOrigin,
-                    //ShowsStatistics = true
+                    AutoenablesDefaultLighting = true
                 };
 
                 sceneView.Frame = Bounds;
@@ -61,7 +63,6 @@ namespace ARExample.iOS.Renderers
             sceneView?.Delegate?.Dispose();
 
             config = new ARWorldTrackingConfiguration();
-            //sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints | ARSCNDebugOptions.ShowWorldOrigin;
             sceneView.Session.Run(config, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
 
             //Permite añadir reflejos a los objetos de la escena
@@ -83,25 +84,75 @@ namespace ARExample.iOS.Renderers
 
         private void AddNode()
         {
-            SCNMaterial material = new SCNMaterial();
-            material.Specular.Contents = UIColor.White; //Color del reflejo
-            material.Diffuse.Contents = UIColor.Blue; //Color del objeto
+            if (sceneView.Scene.RootNode.FindChildNode("Jellyfish", true) != null)
+                return;
 
-            SCNNode boxNode = new SCNNode();
-            boxNode.Geometry = SCNBox.Create(0.2f, 0.2f, 0.2f, 0);
-            boxNode.Geometry.Materials = new SCNMaterial[] { material };
-            boxNode.Position = new SCNVector3(0, 0, -1f);
+            SCNScene jellyfishScn = SCNScene.FromFile("art.scnassets/Jellyfish");
+            SCNNode jellyfishNode = jellyfishScn.RootNode.FindChildNode("Jellyfish", false); //It should be as root node
 
-            sceneView.Scene.RootNode.AddChildNode(boxNode);
+
+            double x = (double)random.Next(-1000, 1000) / 1000d;
+            float xf = Convert.ToSingle(x);
+
+            double y = (double)random.Next(-1000, 1000) / 1000d;
+            float yf = Convert.ToSingle(x);
+
+            double z = (double)random.Next(-1000, 1000) / 1000d;
+            float zf = Convert.ToSingle(x);
+
+            jellyfishNode.Position = new SCNVector3(xf, yf, zf);
+            sceneView.Scene.RootNode.AddChildNode(jellyfishNode);
         }
 
-        private void HandleTap(UITapGestureRecognizer sender)
+        private async void HandleTap(UITapGestureRecognizer sender)
         {
-            SCNView sceneViewTappedOn = sender.View as SCNView;
-            CoreGraphics.CGPoint touchCoordinates = sender.LocationInView(sceneViewTappedOn);
-            SCNHitTestResult[] hitTest = sceneViewTappedOn.HitTest(touchCoordinates, new SCNHitTestOptions());
+            if (isHandlingTap)
+                return;
 
-            Debug.WriteLine($"Node pressed {hitTest.Length}");
+            try
+            {
+                isHandlingTap = true;
+                SCNView sceneViewTappedOn = sender.View as SCNView;
+                CoreGraphics.CGPoint touchCoordinates = sender.LocationInView(sceneViewTappedOn);
+                SCNHitTestResult[] hitTest = sceneViewTappedOn.HitTest(touchCoordinates, new SCNHitTestOptions());
+
+                if (!hitTest.Any())
+                    return;
+
+                SCNNode pressedNode = hitTest.FirstOrDefault().Node;
+                await AnimateNode(pressedNode);
+                RemoveAllNodes();
+                AddNode();
+            }
+            finally
+            {
+                isHandlingTap = false;
+            }
+        }
+
+        private async Task AnimateNode(SCNNode node)
+        {
+            var sourcePosition = new SCNVector3(node.PresentationNode.Position.X, node.PresentationNode.Position.Y, node.PresentationNode.Position.Z);
+            var targetPosition = new SCNVector3(node.PresentationNode.Position.X - 0.2f, node.PresentationNode.Position.Y - 0.2f, node.PresentationNode.Position.Z - 0.2f);
+
+            for (int i = 0; i < 3; i++)
+            {
+                SCNAction toTarget = SCNAction.MoveTo(targetPosition, 0.2f);
+                node.RunAction(toTarget);
+                await Task.Delay(200);
+
+                SCNAction toSource = SCNAction.MoveTo(sourcePosition, 0.2f);
+                node.RunAction(toSource);
+                await Task.Delay(200);
+            }            
+        }
+
+        private void RemoveAllNodes()
+        {
+            while (sceneView.Scene.RootNode.ChildNodes.Length > 0)
+            {
+                sceneView.Scene.RootNode.ChildNodes[0].RemoveFromParentNode();
+            }
         }
     }
 }

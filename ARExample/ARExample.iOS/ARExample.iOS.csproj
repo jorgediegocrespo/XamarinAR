@@ -142,6 +142,7 @@
     <Folder Include="Renderers\ArViewRenderer\" />
     <Folder Include="Renderers\SolarSystemViewRenderer\" />
     <Folder Include="Renderers\ArGameViewRenderer\" />
+    <Folder Include="art.scnassets\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
@@ -152,5 +153,9 @@
     <BundleResource Include="Resources\SunTexture.jpg" />
     <BundleResource Include="Resources\VenusEmission.jpg" />
     <BundleResource Include="Resources\VenusTexture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <SceneKitAsset Include="art.scnassets\Jellyfish.dae" />
+    <SceneKitAsset Include="art.scnassets\Jellyfish.png" />
   </ItemGroup>
 </Project>
