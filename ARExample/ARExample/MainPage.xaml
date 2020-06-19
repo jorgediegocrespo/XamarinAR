@@ -17,5 +17,9 @@
                 Text="Game"
                 Clicked="btGame_Clicked" />
 
+        <Button x:Name="btPlane"
+                Text="Plane"
+                Clicked="btPlane_Clicked" />
+
     </StackLayout>
 </ContentPage>

@@ -7,7 +7,6 @@ namespace ARExample.iOS.Renderers
     using System.Threading.Tasks;
     using ARExample.Controls;
     using ARKit;
-    using CoreAnimation;
     using SceneKit;
     using UIKit;
     using Xamarin.Forms.Platform.iOS;

@@ -72,6 +72,7 @@
     <Compile Include="Renderers\ArViewRenderer\CustomArScnViewDelegate.cs" />
     <Compile Include="Renderers\SolarSystemViewRenderer\SolarSystemViewRenderer.cs" />
     <Compile Include="Renderers\ArGameViewRenderer\ArGameViewRenderer.cs" />
+    <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -143,6 +144,7 @@
     <Folder Include="Renderers\SolarSystemViewRenderer\" />
     <Folder Include="Renderers\ArGameViewRenderer\" />
     <Folder Include="art.scnassets\" />
+    <Folder Include="Renderers\ArPlaneViewRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
