@@ -21,5 +21,9 @@
                 Text="Plane"
                 Clicked="btPlane_Clicked" />
 
+        <Button x:Name="btIkea"
+                Text="Ikea"
+                Clicked="btIkea_Clicked" />
+
     </StackLayout>
 </ContentPage>

@@ -21,7 +21,5 @@ namespace ARExample
             base.OnDisappearing();
             ArScene.PauseSession?.Invoke();
         }
-
-
     }
 }

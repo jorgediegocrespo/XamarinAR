@@ -1,12 +1,9 @@
 ﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(ARExample.Controls.ArPlaneView), typeof(ARExample.iOS.Renderers.ArPlaneViewRenderer))]
 namespace ARExample.iOS.Renderers
 {
-    using System;
     using System.ComponentModel;
     using ARExample.Controls;
     using ARKit;
-    using SceneKit;
-    using UIKit;
     using Xamarin.Forms.Platform.iOS;
 
     public class ArPlaneViewRenderer : ViewRenderer<ArPlaneView, ARSCNView>
@@ -55,7 +52,7 @@ namespace ARExample.iOS.Renderers
             sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints | ARSCNDebugOptions.ShowWorldOrigin;
             config.PlaneDetection = ARPlaneDetection.Horizontal;
             sceneView.Session.Run(config, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
-            sceneView.Delegate = new ArGameScnViewDelegate(sceneView);
+            sceneView.Delegate = new ArPlaneScnViewDelegate(sceneView);
 
             //Permite añadir reflejos a los objetos de la escena
             sceneView.AutoenablesDefaultLighting = true;            

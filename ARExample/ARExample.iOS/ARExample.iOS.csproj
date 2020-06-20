@@ -73,7 +73,8 @@
     <Compile Include="Renderers\SolarSystemViewRenderer\SolarSystemViewRenderer.cs" />
     <Compile Include="Renderers\ArGameViewRenderer\ArGameViewRenderer.cs" />
     <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneViewRenderer.cs" />
-    <Compile Include="Renderers\ArGameViewRenderer\ArGameScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArIkeaViewRenderer\ArIkeaViewRenderer.cs" />
+    <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneScnViewDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -146,6 +147,7 @@
     <Folder Include="Renderers\ArGameViewRenderer\" />
     <Folder Include="art.scnassets\" />
     <Folder Include="Renderers\ArPlaneViewRenderer\" />
+    <Folder Include="Renderers\ArIkeaViewRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
@@ -161,5 +163,9 @@
   <ItemGroup>
     <SceneKitAsset Include="art.scnassets\Jellyfish.dae" />
     <SceneKitAsset Include="art.scnassets\Jellyfish.png" />
+    <SceneKitAsset Include="art.scnassets\boxing.scn" />
+    <SceneKitAsset Include="art.scnassets\cup.scn" />
+    <SceneKitAsset Include="art.scnassets\table.scn" />
+    <SceneKitAsset Include="art.scnassets\vase.scn" />
   </ItemGroup>
 </Project>

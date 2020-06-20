@@ -6,11 +6,11 @@ using UIKit;
 
 namespace ARExample.iOS.Renderers
 {
-    public class ArGameScnViewDelegate : ARSCNViewDelegate
-    { 
+    public class ArPlaneScnViewDelegate : ARSCNViewDelegate
+    {
         private readonly ARSCNView sceneView;
 
-        public ArGameScnViewDelegate(ARSCNView sceneView)
+        public ArPlaneScnViewDelegate(ARSCNView sceneView)
         {
             this.sceneView = sceneView;
         }
