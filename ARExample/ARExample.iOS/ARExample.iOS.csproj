@@ -73,6 +73,7 @@
     <Compile Include="Renderers\SolarSystemViewRenderer\SolarSystemViewRenderer.cs" />
     <Compile Include="Renderers\ArGameViewRenderer\ArGameViewRenderer.cs" />
     <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneViewRenderer.cs" />
+    <Compile Include="Renderers\ArGameViewRenderer\ArGameScnViewDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -155,6 +156,7 @@
     <BundleResource Include="Resources\SunTexture.jpg" />
     <BundleResource Include="Resources\VenusEmission.jpg" />
     <BundleResource Include="Resources\VenusTexture.jpg" />
+    <BundleResource Include="Resources\Lava.png" />
   </ItemGroup>
   <ItemGroup>
     <SceneKitAsset Include="art.scnassets\Jellyfish.dae" />
