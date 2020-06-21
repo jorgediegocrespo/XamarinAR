@@ -17,5 +17,13 @@
                 Text="Game"
                 Clicked="btGame_Clicked" />
 
+        <Button x:Name="btPlane"
+                Text="Plane"
+                Clicked="btPlane_Clicked" />
+
+        <Button x:Name="btIkea"
+                Text="Ikea"
+                Clicked="btIkea_Clicked" />
+
     </StackLayout>
 </ContentPage>

@@ -27,5 +27,15 @@ namespace ARExample
         {
             await Navigation.PushAsync(new GameView());
         }
+
+        private async void btPlane_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new PlaneView());
+        }
+
+        private async void btIkea_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new IkeaView());
+        }
     }
 }
