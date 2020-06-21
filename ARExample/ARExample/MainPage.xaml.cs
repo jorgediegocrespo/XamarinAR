@@ -37,5 +37,10 @@ namespace ARExample
         {
             await Navigation.PushAsync(new IkeaView());
         }
+
+        private async void btVehicularPhysics_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new VehicularPhysicsView());
+        }
     }
 }

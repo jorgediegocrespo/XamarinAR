@@ -25,5 +25,9 @@
                 Text="Ikea"
                 Clicked="btIkea_Clicked" />
 
+        <Button x:Name="btVehicularPhysics"
+                Text="Vehicular Physics"
+                Clicked="btVehicularPhysics_Clicked" />
+
     </StackLayout>
 </ContentPage>

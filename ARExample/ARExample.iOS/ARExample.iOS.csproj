@@ -75,6 +75,7 @@
     <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneViewRenderer.cs" />
     <Compile Include="Renderers\ArIkeaViewRenderer\ArIkeaViewRenderer.cs" />
     <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArVehicularPhysicsViewRenderer\ArVehicularPhysicsViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -148,6 +149,7 @@
     <Folder Include="art.scnassets\" />
     <Folder Include="Renderers\ArPlaneViewRenderer\" />
     <Folder Include="Renderers\ArIkeaViewRenderer\" />
+    <Folder Include="Renderers\ArVehicularPhysicsViewRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
