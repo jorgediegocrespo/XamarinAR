@@ -6,6 +6,7 @@ namespace ARExample.iOS.Renderers
     using System.Linq;
     using ARExample.Controls;
     using ARKit;
+    using CoreAnimation;
     using OpenTK;
     using SceneKit;
     using UIKit;
@@ -40,9 +41,7 @@ namespace ARExample.iOS.Renderers
                 e.NewElement.PauseSession = PauseSession;
 
                 SetNativeControl(sceneView);
-
-                var tapGestureRecognizer = new UITapGestureRecognizer(HandleTap);
-                sceneView.AddGestureRecognizer(tapGestureRecognizer);
+                AddGestureRecognizers();
             }
         }
 
@@ -68,6 +67,18 @@ namespace ARExample.iOS.Renderers
         private void PauseSession()
         {
             sceneView.Session.Pause();
+        }
+
+        private void AddGestureRecognizers()
+        {
+            UITapGestureRecognizer tapGestureRecognizer = new UITapGestureRecognizer(HandleTap);
+            sceneView.AddGestureRecognizer(tapGestureRecognizer);
+
+            UIPinchGestureRecognizer pichGestureRecognizer = new UIPinchGestureRecognizer(HandlerPick);
+            sceneView.AddGestureRecognizer(pichGestureRecognizer);
+
+            UILongPressGestureRecognizer longPressRecognizer = new UILongPressGestureRecognizer(HandlerLongPress);
+            sceneView.AddGestureRecognizer(longPressRecognizer);
         }
 
         private void HandleTap(UITapGestureRecognizer sender)
@@ -107,8 +118,66 @@ namespace ARExample.iOS.Renderers
                 case IkeaItem.Table:
                 default:
                     SCNScene tableScene = SCNScene.FromFile("art.scnassets/table.scn");
-                    return tableScene.RootNode.FindChildNode("table", false);
+                    SCNNode node = tableScene.RootNode.FindChildNode("table", false);
+                    CenterPivot(node);
+                    return node;
             }
+        }
+
+        private void CenterPivot(SCNNode node)
+        {
+            var min = new SCNVector3();
+            var max = new SCNVector3();
+            if (node.GetBoundingBox(ref min, ref max))
+            {
+                node.Pivot = new SCNMatrix4(CATransform3D.MakeTranslation(
+                    min.X + (max.X - min.X) / 2,
+                    min.Y + (max.Y - min.Y) / 2,
+                    min.Z + (max.Z - min.Z) / 2));
+            }
+        }
+
+        private void HandlerPick(UIPinchGestureRecognizer sender)
+        {
+            ARSCNView pinchScene = sender.View as ARSCNView;
+            CoreGraphics.CGPoint pinchLocation = sender.LocationInView(pinchScene);
+            SCNHitTestResult[] hitTest = pinchScene.HitTest(pinchLocation, new SCNHitTestOptions());
+
+            if (hitTest?.Any() != true)
+                return;
+
+            SCNNode node = hitTest.First().Node;
+            SCNAction pinchAction = SCNAction.ScaleBy(sender.Scale, 0);
+            node.RunAction(pinchAction);
+            sender.Scale = 1.0f;
+        }
+
+        private void HandlerLongPress(UILongPressGestureRecognizer sender)
+        {
+            ARSCNView longPressScene = sender.View as ARSCNView;
+            CoreGraphics.CGPoint longPressLocation = sender.LocationInView(longPressScene);
+            SCNHitTestResult[] hitTest = longPressScene.HitTest(longPressLocation, new SCNHitTestOptions());
+
+            if (hitTest?.Any() != true)
+                return;
+
+            SCNNode node = hitTest.First().Node;
+
+            if (sender.State == UIGestureRecognizerState.Began)
+            {
+                SCNAction rotateAction = SCNAction.RotateBy(0, ConvertDegreesToRadians(360f), 0, 1f);
+                SCNAction rotateForever = SCNAction.RepeatActionForever(rotateAction);
+                node.RunAction(rotateForever);
+            }
+            else if (sender.State == UIGestureRecognizerState.Ended)
+            {
+                node.RemoveAllActions();
+            }
+        }
+
+        private float ConvertDegreesToRadians(float angle)
+        {
+            return (float)(Math.PI / 180) * angle;
         }
     }
 }
