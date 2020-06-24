@@ -12,13 +12,16 @@
         <controls:ArVehicularPhysicsView x:Name="ArScene"
                                          HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
 
-        <StackLayout Grid.Row="1"
-                     Orientation="Horizontal"
-                     Spacing="10"
-                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <ScrollView Grid.Row="1"
+                    Padding="20"
+                    Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10">
 
-            
-
-        </StackLayout>
+                <Button x:Name="BtAddCar"
+                        Text="AddCar"
+                        Clicked="BtAddCar_Clicked" />
+            </StackLayout>
+        </ScrollView>
     </Grid>
 </ContentPage>

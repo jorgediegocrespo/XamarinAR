@@ -18,5 +18,10 @@
             base.OnDisappearing();
             ArScene.PauseSession?.Invoke();
         }
+
+        private void BtAddCar_Clicked(object sender, System.EventArgs e)
+        {
+            ArScene.AddCar?.Invoke();
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace ARExample.Controls
     {
         public Action RunSession { get; set; }
         public Action PauseSession { get; set; }
+        public Action AddCar { get; set; }
     }
 }
