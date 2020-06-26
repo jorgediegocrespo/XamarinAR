@@ -75,6 +75,8 @@
     <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneViewRenderer.cs" />
     <Compile Include="Renderers\ArIkeaViewRenderer\ArIkeaViewRenderer.cs" />
     <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArVehicularPhysicsViewRenderer\ArVehicularPhysicsViewRenderer.cs" />
+    <Compile Include="Renderers\ArVehicularPhysicsViewRenderer\ArVehicularPhysicsScnViewDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -148,6 +150,7 @@
     <Folder Include="art.scnassets\" />
     <Folder Include="Renderers\ArPlaneViewRenderer\" />
     <Folder Include="Renderers\ArIkeaViewRenderer\" />
+    <Folder Include="Renderers\ArVehicularPhysicsViewRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
@@ -159,6 +162,7 @@
     <BundleResource Include="Resources\VenusEmission.jpg" />
     <BundleResource Include="Resources\VenusTexture.jpg" />
     <BundleResource Include="Resources\Lava.png" />
+    <BundleResource Include="Resources\Concrete.png" />
   </ItemGroup>
   <ItemGroup>
     <SceneKitAsset Include="art.scnassets\Jellyfish.dae" />
@@ -167,5 +171,6 @@
     <SceneKitAsset Include="art.scnassets\cup.scn" />
     <SceneKitAsset Include="art.scnassets\table.scn" />
     <SceneKitAsset Include="art.scnassets\vase.scn" />
+    <SceneKitAsset Include="art.scnassets\CarScene.scn" />
   </ItemGroup>
 </Project>

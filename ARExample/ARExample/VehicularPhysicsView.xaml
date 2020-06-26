@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ARExample.Controls"
+             x:Class="ARExample.VehicularPhysicsView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+
+        <controls:ArVehicularPhysicsView x:Name="ArScene"
+                                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+
+        <ScrollView Grid.Row="1"
+                    Padding="20"
+                    Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10">
+
+                <Button x:Name="BtAddCar"
+                        Text="AddCar"
+                        Clicked="BtAddCar_Clicked" />
+
+                <Button x:Name="BtGoLeft"
+                        Text="Go Left"
+                        Clicked="BtGoLeft_Clicked" />
+
+                <Button x:Name="BtGoRight"
+                        Text="Go Right"
+                        Clicked="BtGoRight_Clicked" />
+
+                <Button x:Name="BtGoAhead"
+                        Text="Go Ahead"
+                        Clicked="BtGoAhead_Clicked" />
+
+                <Button x:Name="BtGoBack"
+                        Text="Go Back"
+                        Clicked="BtGoBack_Clicked" />
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
