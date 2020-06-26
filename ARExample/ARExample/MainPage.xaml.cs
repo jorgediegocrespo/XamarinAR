@@ -42,5 +42,10 @@ namespace ARExample
         {
             await Navigation.PushAsync(new VehicularPhysicsView());
         }
+
+        private async void btVirtualPortal_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new VirtualPortalView());
+        }
     }
 }
