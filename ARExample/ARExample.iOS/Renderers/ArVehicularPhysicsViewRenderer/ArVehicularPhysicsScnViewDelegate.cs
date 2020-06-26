@@ -8,11 +8,11 @@ namespace ARExample.iOS.Renderers
 {
     public class ArVehicularPhysicsScnViewDelegate : ARSCNViewDelegate
     {
-        private readonly ARSCNView sceneView;
+        private readonly ArVehicularPhysicsViewRenderer arVehicularPhysicsViewRenderer;
 
-        public ArVehicularPhysicsScnViewDelegate(ARSCNView sceneView)
+        public ArVehicularPhysicsScnViewDelegate(ArVehicularPhysicsViewRenderer arVehicularPhysicsViewRenderer)
         {
-            this.sceneView = sceneView;
+            this.arVehicularPhysicsViewRenderer = arVehicularPhysicsViewRenderer;
         }
 
         [Export("renderer:didAddNode:forAnchor:")]
@@ -49,6 +49,19 @@ namespace ARExample.iOS.Renderers
 
             foreach (SCNNode chilNode in node.ChildNodes)
                 chilNode.RemoveFromParentNode();
+        }
+
+        public override void DidSimulatePhysics(ISCNSceneRenderer renderer, double timeInSeconds)
+        {
+            if (arVehicularPhysicsViewRenderer.PhysicsVehicle != null)
+            {
+                System.Diagnostics.Debug.WriteLine(arVehicularPhysicsViewRenderer.Orientation);
+                arVehicularPhysicsViewRenderer.PhysicsVehicle.SetSteeringAngle(arVehicularPhysicsViewRenderer.Orientation, 0);
+                arVehicularPhysicsViewRenderer.PhysicsVehicle.SetSteeringAngle(arVehicularPhysicsViewRenderer.Orientation, 1);
+
+                arVehicularPhysicsViewRenderer.PhysicsVehicle.ApplyEngineForce(arVehicularPhysicsViewRenderer.Speed, 2);
+                arVehicularPhysicsViewRenderer.PhysicsVehicle.ApplyEngineForce(arVehicularPhysicsViewRenderer.Speed, 3);
+            }
         }
 
         private SCNNode CreateConcreteNode(ARPlaneAnchor planeAnchor)

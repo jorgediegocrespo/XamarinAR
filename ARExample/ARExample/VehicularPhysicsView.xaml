@@ -21,6 +21,23 @@
                 <Button x:Name="BtAddCar"
                         Text="AddCar"
                         Clicked="BtAddCar_Clicked" />
+
+                <Button x:Name="BtGoLeft"
+                        Text="Go Left"
+                        Clicked="BtGoLeft_Clicked" />
+
+                <Button x:Name="BtGoRight"
+                        Text="Go Right"
+                        Clicked="BtGoRight_Clicked" />
+
+                <Button x:Name="BtGoAhead"
+                        Text="Go Ahead"
+                        Clicked="BtGoAhead_Clicked" />
+
+                <Button x:Name="BtGoBack"
+                        Text="Go Back"
+                        Clicked="BtGoBack_Clicked" />
+
             </StackLayout>
         </ScrollView>
     </Grid>

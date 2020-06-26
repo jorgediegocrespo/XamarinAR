@@ -11,8 +11,7 @@ namespace ARExample.iOS.Renderers
     {
         private ARSCNView sceneView;
         private ARWorldTrackingConfiguration config;
-        private SCNPhysicsVehicle physicsVehicle;
-
+        
         protected override void OnElementChanged(ElementChangedEventArgs<ArVehicularPhysicsView> e)
         {
             base.OnElementChanged(e);
@@ -22,6 +21,11 @@ namespace ARExample.iOS.Renderers
                 e.OldElement.RunSession = null;
                 e.OldElement.PauseSession = null;
                 e.OldElement.AddCar = null;
+
+                e.OldElement.GoLeft = null;
+                e.OldElement.GoRight = null;
+                e.OldElement.GoAhead = null;
+                e.OldElement.GoBack = null;
             }
 
             if (e.NewElement != null)
@@ -38,9 +42,18 @@ namespace ARExample.iOS.Renderers
                 e.NewElement.PauseSession = PauseSession;
                 e.NewElement.AddCar = AddCar;
 
+                e.NewElement.GoLeft = GoLeft;
+                e.NewElement.GoRight = GoRight;
+                e.NewElement.GoAhead = GoAhead;
+                e.NewElement.GoBack = GoBack;
+
                 SetNativeControl(sceneView);
             }
         }
+
+        public SCNPhysicsVehicle PhysicsVehicle { get; private set; }
+        public float Orientation { get; private set; }
+        public float Speed { get; private set; }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -56,7 +69,7 @@ namespace ARExample.iOS.Renderers
             sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints | ARSCNDebugOptions.ShowWorldOrigin;
             config.PlaneDetection = ARPlaneDetection.Horizontal;
             sceneView.Session.Run(config, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
-            sceneView.Delegate = new ArVehicularPhysicsScnViewDelegate(sceneView);
+            sceneView.Delegate = new ArVehicularPhysicsScnViewDelegate(this);
 
             //Permite añadir reflejos a los objetos de la escena
             sceneView.AutoenablesDefaultLighting = true;
@@ -97,10 +110,30 @@ namespace ARExample.iOS.Renderers
 
             SCNPhysicsBody body = SCNPhysicsBody.CreateBody(SCNPhysicsBodyType.Dynamic, SCNPhysicsShape.Create(carNode, keepAsCompound: true));
             carNode.PhysicsBody = body;
-            physicsVehicle = SCNPhysicsVehicle.Create(carNode.PhysicsBody, new SCNPhysicsVehicleWheel[] { v_frontLeftWheel, v_frontRightWheel, v_rearLeftWheel, v_rearRightWheel });
+            PhysicsVehicle = SCNPhysicsVehicle.Create(carNode.PhysicsBody, new SCNPhysicsVehicleWheel[] { v_frontLeftWheel, v_frontRightWheel, v_rearLeftWheel, v_rearRightWheel });
 
-            sceneView.Scene.PhysicsWorld.AddBehavior(physicsVehicle);
+            sceneView.Scene.PhysicsWorld.AddBehavior(PhysicsVehicle);
             sceneView.Scene.RootNode.AddChildNode(carNode);
+        }
+
+        private void GoLeft()
+        {
+            Orientation -= 0.1f;
+        }
+
+        private void GoRight()
+        {
+            Orientation += 0.1f;
+        }
+
+        private void GoAhead()
+        {
+            Speed += 1f;
+        }
+
+        private void GoBack()
+        {
+            Speed -= 1f;
         }
     }
 }
