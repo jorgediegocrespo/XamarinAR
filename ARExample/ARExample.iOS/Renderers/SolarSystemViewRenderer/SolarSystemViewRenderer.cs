@@ -18,30 +18,30 @@ namespace ARExample.iOS.Renderers
         {
             base.OnElementChanged(e);
 
-            if (e.OldElement != null || Element == null)
+            if (e.OldElement != null)
             {
-                return;
+                e.OldElement.RunSession = null;
+                e.OldElement.PauseSession = null;
+                e.OldElement.DrawSolarSystem = null;
             }
 
-            sceneView = new ARSCNView()
+            if (e.NewElement != null)
             {
-                AutoenablesDefaultLighting = true,
-                DebugOptions = ARSCNDebugOptions.ShowWorldOrigin,
-                ShowsStatistics = true
-            };
+                sceneView = new ARSCNView()
+                {
+                    AutoenablesDefaultLighting = true,
+                    DebugOptions = ARSCNDebugOptions.ShowWorldOrigin,
+                    ShowsStatistics = true
+                };
 
-            sceneView.Frame = Bounds;
+                sceneView.Frame = Bounds;
 
-            Element.RunSession = RunSession;
-            Element.PauseSession = PauseSession;
-            Element.DrawSolarSystem = DrawSolarSystem;
+                e.NewElement.RunSession = RunSession;
+                e.NewElement.PauseSession = PauseSession;
+                e.NewElement.DrawSolarSystem = DrawSolarSystem;
 
-            SetNativeControl(sceneView);
-        }
-
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            base.OnElementPropertyChanged(sender, e);
+                SetNativeControl(sceneView);
+            }
         }
 
         private void RunSession()
@@ -62,6 +62,7 @@ namespace ARExample.iOS.Renderers
             sceneView.Session.Pause();
         }
 
+        //TODO 3.1 Añadiendo pieles
         private void DrawSolarSystem()
         {
             SCNNode sun = new SCNNode();
@@ -88,6 +89,7 @@ namespace ARExample.iOS.Renderers
             planet.Geometry.FirstMaterial.Normal.Contents = string.IsNullOrWhiteSpace(normal) ? null : new UIImage(normal);
             planet.Position = new SCNVector3(xPosition, 0, 0);
 
+            //TODO 3.2 Movimientos
             SCNAction selfAction = SCNAction.RotateBy(0, ConvertDegreesToRadians(360), 0, selfRotation);
             SCNAction selfForever = SCNAction.RepeatActionForever(selfAction);
             planet.RunAction(selfForever);

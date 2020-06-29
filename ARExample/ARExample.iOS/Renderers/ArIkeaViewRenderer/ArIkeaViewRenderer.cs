@@ -104,6 +104,7 @@ namespace ARExample.iOS.Renderers
 
         private SCNNode GetSelectedNode()
         {
+            //TODO 5.1 Añadiendo modelos 3D
             switch (Element.SelectedItem)
             {
                 case IkeaItem.Cup:
