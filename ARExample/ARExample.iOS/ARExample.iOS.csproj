@@ -165,6 +165,13 @@
     <BundleResource Include="Resources\VenusTexture.jpg" />
     <BundleResource Include="Resources\Lava.png" />
     <BundleResource Include="Resources\Concrete.png" />
+    <BundleResource Include="Resources\portalBack.png" />
+    <BundleResource Include="Resources\portalBottom.png" />
+    <BundleResource Include="Resources\portalSideA.png" />
+    <BundleResource Include="Resources\portalSideB.png" />
+    <BundleResource Include="Resources\portalSideDoorA.png" />
+    <BundleResource Include="Resources\portalSideDoorB.png" />
+    <BundleResource Include="Resources\portalTop.png" />
   </ItemGroup>
   <ItemGroup>
     <SceneKitAsset Include="art.scnassets\Jellyfish.dae" />
@@ -174,5 +181,6 @@
     <SceneKitAsset Include="art.scnassets\table.scn" />
     <SceneKitAsset Include="art.scnassets\vase.scn" />
     <SceneKitAsset Include="art.scnassets\CarScene.scn" />
+    <SceneKitAsset Include="art.scnassets\Portal.scn" />
   </ItemGroup>
 </Project>
