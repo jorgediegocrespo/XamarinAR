@@ -78,6 +78,9 @@
     <Compile Include="Renderers\ArVehicularPhysicsViewRenderer\ArVehicularPhysicsScnViewDelegate.cs" />
     <Compile Include="Renderers\ArVirtualPortalViewRenderer\ArVirtualPortalViewRenderer.cs" />
     <Compile Include="Renderers\ArVirtualPortalViewRenderer\ArVirtualPortalScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArImageRecognitionViewRenderer\ArImageRecognitionViewRenderer.cs" />
+    <Compile Include="Renderers\ArImageRecognitionViewRenderer\ArImageRecognitionScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArPlaneViewRenderer\ArImageRecognitionPlaneNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -153,6 +156,7 @@
     <Folder Include="Renderers\ArIkeaViewRenderer\" />
     <Folder Include="Renderers\ArVehicularPhysicsViewRenderer\" />
     <Folder Include="Renderers\ArVirtualPortalViewRenderer\" />
+    <Folder Include="Renderers\ArImageRecognitionViewRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
