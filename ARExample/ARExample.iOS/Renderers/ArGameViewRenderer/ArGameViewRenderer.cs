@@ -86,8 +86,9 @@ namespace ARExample.iOS.Renderers
             if (sceneView.Scene.RootNode.FindChildNode("Jellyfish", true) != null)
                 return;
 
+            //TODO 5.2 Añadiendo modelos 3D
             SCNScene jellyfishScn = SCNScene.FromFile("art.scnassets/Jellyfish");
-            SCNNode jellyfishNode = jellyfishScn.RootNode.FindChildNode("Jellyfish", false); //It should be as root node
+            SCNNode jellyfishNode = jellyfishScn.RootNode.FindChildNode("Jellyfish", false);
 
 
             double x = (double)random.Next(-1000, 1000) / 1000d;

@@ -69,7 +69,6 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\ArViewRenderer\ArViewRenderer.cs" />
-    <Compile Include="Renderers\ArViewRenderer\CustomArScnViewDelegate.cs" />
     <Compile Include="Renderers\SolarSystemViewRenderer\SolarSystemViewRenderer.cs" />
     <Compile Include="Renderers\ArGameViewRenderer\ArGameViewRenderer.cs" />
     <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneViewRenderer.cs" />
@@ -77,6 +76,8 @@
     <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneScnViewDelegate.cs" />
     <Compile Include="Renderers\ArVehicularPhysicsViewRenderer\ArVehicularPhysicsViewRenderer.cs" />
     <Compile Include="Renderers\ArVehicularPhysicsViewRenderer\ArVehicularPhysicsScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArVirtualPortalViewRenderer\ArVirtualPortalViewRenderer.cs" />
+    <Compile Include="Renderers\ArVirtualPortalViewRenderer\ArVirtualPortalScnViewDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -151,6 +152,7 @@
     <Folder Include="Renderers\ArPlaneViewRenderer\" />
     <Folder Include="Renderers\ArIkeaViewRenderer\" />
     <Folder Include="Renderers\ArVehicularPhysicsViewRenderer\" />
+    <Folder Include="Renderers\ArVirtualPortalViewRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
@@ -163,6 +165,13 @@
     <BundleResource Include="Resources\VenusTexture.jpg" />
     <BundleResource Include="Resources\Lava.png" />
     <BundleResource Include="Resources\Concrete.png" />
+    <BundleResource Include="Resources\portalBack.png" />
+    <BundleResource Include="Resources\portalBottom.png" />
+    <BundleResource Include="Resources\portalSideA.png" />
+    <BundleResource Include="Resources\portalSideB.png" />
+    <BundleResource Include="Resources\portalSideDoorA.png" />
+    <BundleResource Include="Resources\portalSideDoorB.png" />
+    <BundleResource Include="Resources\portalTop.png" />
   </ItemGroup>
   <ItemGroup>
     <SceneKitAsset Include="art.scnassets\Jellyfish.dae" />
@@ -172,5 +181,6 @@
     <SceneKitAsset Include="art.scnassets\table.scn" />
     <SceneKitAsset Include="art.scnassets\vase.scn" />
     <SceneKitAsset Include="art.scnassets\CarScene.scn" />
+    <SceneKitAsset Include="art.scnassets\Portal.scn" />
   </ItemGroup>
 </Project>

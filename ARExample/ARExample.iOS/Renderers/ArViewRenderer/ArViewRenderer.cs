@@ -1,8 +1,6 @@
 ﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(ARExample.Controls.ArView), typeof(ARExample.iOS.Renderers.ArViewRenderer))]
 namespace ARExample.iOS.Renderers
 {
-    using System;
-    using System.ComponentModel;
     using System.Linq;
     using ARExample.Controls;
     using ARKit;
@@ -12,6 +10,7 @@ namespace ARExample.iOS.Renderers
     using UIKit;
     using Xamarin.Forms.Platform.iOS;
 
+    //TODO 1.2 ¿Por dónde empezar?
     public class ArViewRenderer : ViewRenderer<ArView, ARSCNView>
     {
         private ARSCNView sceneView;
@@ -21,57 +20,53 @@ namespace ARExample.iOS.Renderers
         {
             base.OnElementChanged(e);
 
-            if (e.OldElement != null || Element == null)
+            if (e.OldElement != null)
             {
-                return;
+                e.OldElement.RunSession = null;
+                e.OldElement.PauseSession = null;
+                e.OldElement.ResetSession = null;
+                e.OldElement.AddBox = null;
+                e.OldElement.AddSphere = null;
+                e.OldElement.AddTorus = null;
+                e.OldElement.AddTube = null;
+                e.OldElement.AddCone = null;
+                e.OldElement.AddCylinder = null;
+                e.OldElement.AddPyramid = null;
+                e.OldElement.AddPlane = null;
+                e.OldElement.AddCapsule = null;
+                e.OldElement.AddPath = null;
+                e.OldElement.AddHouse = null;
+                e.OldElement.AddRelativeNodes = null;
             }
 
-            sceneView = new ARSCNView()
+            if (e.NewElement != null)
             {
-                AutoenablesDefaultLighting = true,
-                DebugOptions = ARSCNDebugOptions.ShowWorldOrigin,
-                ShowsStatistics = true
-            };
+                sceneView = new ARSCNView()
+                {
+                    AutoenablesDefaultLighting = true,
+                    DebugOptions = ARSCNDebugOptions.ShowWorldOrigin,
+                    ShowsStatistics = true
+                };
 
-            sceneView.Frame = Bounds;
+                sceneView.Frame = Bounds;
 
-            Element.RunSession = RunSession;
-            Element.PauseSession = PauseSession;
-            Element.ResetSession = ResetSession;
-            Element.AddBox = AddBox;
-            Element.AddPath = AddPath;
-            Element.AddHouse = AddHouse;
+                e.NewElement.RunSession = RunSession;
+                e.NewElement.PauseSession = PauseSession;
+                e.NewElement.ResetSession = ResetSession;
+                e.NewElement.AddBox = AddBox;
+                e.NewElement.AddSphere = AddSphere;
+                e.NewElement.AddTorus = AddTorus;
+                e.NewElement.AddTube = AddTube;
+                e.NewElement.AddCone = AddCone;
+                e.NewElement.AddCylinder = AddCylinder;
+                e.NewElement.AddPyramid = AddPyramid;
+                e.NewElement.AddPlane = AddPlane;
+                e.NewElement.AddCapsule = AddCapsule;
+                e.NewElement.AddPath = AddPath;
+                e.NewElement.AddHouse = AddHouse;
+                e.NewElement.AddRelativeNodes = AddRelativeNodes;
 
-            SetNativeControl(sceneView);
-        }
-
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            base.OnElementPropertyChanged(sender, e);
-        }
-
-        public override void TouchesEnded(NSSet touches, UIEvent evt)
-        {
-            base.TouchesEnded(touches, evt);
-
-            if (touches.AnyObject is UITouch touch)
-            {
-                CGPoint point = touch.LocationInView(this.sceneView);
-
-                SCNHitTestOptions hitTestOptions = new SCNHitTestOptions();
-
-                SCNHitTestResult[] hits = sceneView.HitTest(point, hitTestOptions);
-                SCNHitTestResult hit = hits.FirstOrDefault();
-
-                if (hit == null)
-                    return;
-
-                SCNNode node = hit.Node;
-
-                if (node == null)
-                    return;
-
-                node.RemoveFromParentNode();
+                SetNativeControl(sceneView);
             }
         }
 
@@ -86,7 +81,7 @@ namespace ARExample.iOS.Renderers
 
             //Permite añadir reflejos a los objetos de la escena
             sceneView.AutoenablesDefaultLighting = true;
-            sceneView.Delegate = new CustomArScnViewDelegate(sceneView);
+            //sceneView.Delegate = new CustomArScnViewDelegate(sceneView);
         }
 
         private void PauseSession()
@@ -109,18 +104,104 @@ namespace ARExample.iOS.Renderers
             }
         }
 
+        //TODO 2.1 Añadiendo elementos
         private void AddBox()
         {
-            SCNMaterial material = new SCNMaterial();
-            material.Specular.Contents = UIColor.White; //Color del reflejo
-            material.Diffuse.Contents = UIColor.Blue; //Color del objeto
-
             SCNNode boxNode = new SCNNode();
-            boxNode.Geometry = SCNBox.Create(0.1f, 0.1f, 0.1f, 0);
-            boxNode.Geometry.Materials = new SCNMaterial[] { material }; 
-            boxNode.Position = new SCNVector3(0, 0, -0.3f);
+            boxNode.Geometry = SCNBox.Create(0.05f, 0.05f, 0.05f, 0);
+            boxNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Red; //Color del objeto
+            boxNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            boxNode.Position = new SCNVector3(0.1f, 0, 0);
 
             sceneView.Scene.RootNode.AddChildNode(boxNode);
+        }
+
+        private void AddSphere()
+        {
+            SCNNode sphereNode = new SCNNode();
+            sphereNode.Geometry = SCNSphere.Create(0.05f / 2);
+            sphereNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Blue; //Color del objeto
+            sphereNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            sphereNode.Position = new SCNVector3(0, 0.1f, 0);
+
+            sceneView.Scene.RootNode.AddChildNode(sphereNode);
+        }
+
+        private void AddTorus()
+        {
+            SCNNode torusNode = new SCNNode();
+            torusNode.Geometry = SCNTorus.Create(0.05f / 2, 0.05f / 6);
+            torusNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Black; //Color del objeto
+            torusNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            torusNode.Position = new SCNVector3(-0.1f, 0, 0.1f);
+
+            sceneView.Scene.RootNode.AddChildNode(torusNode);
+        }
+
+        private void AddTube()
+        {
+            SCNNode tubeNode = new SCNNode();
+            tubeNode.Geometry = SCNTube.Create(0.05f / 2, (0.05f / 2), 0.05f * 2);
+            tubeNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Yellow; //Color del objeto
+            tubeNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            tubeNode.Position = new SCNVector3(0, -0.1f, 0);
+
+            sceneView.Scene.RootNode.AddChildNode(tubeNode);
+        }
+
+        private void AddCone()
+        {
+            SCNNode coneNode = new SCNNode();
+            coneNode.Geometry = SCNCone.Create(0.01f, (0.05f / 2), 0.05f * 2);
+            coneNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.SystemPinkColor; //Color del objeto
+            coneNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            coneNode.Position = new SCNVector3(0, 0, -0.1f);
+
+            sceneView.Scene.RootNode.AddChildNode(coneNode);
+        }
+
+        private void AddCylinder()
+        {
+            SCNNode cylinderNode = new SCNNode();
+            cylinderNode.Geometry = SCNCylinder.Create(0.05f / 2, 0.05f);
+            cylinderNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.SystemPurpleColor; //Color del objeto
+            cylinderNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            cylinderNode.Position = new SCNVector3(0.1f, 0.1f, 0);
+
+            sceneView.Scene.RootNode.AddChildNode(cylinderNode);
+        }
+
+        private void AddPyramid()
+        {
+            SCNNode pyramidNode = new SCNNode();
+            pyramidNode.Geometry = SCNPyramid.Create(0.05f, 0.05f, 0.05f);
+            pyramidNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Magenta; //Color del objeto
+            pyramidNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            pyramidNode.Position = new SCNVector3(0.1f, 0, 0.1f);
+
+            sceneView.Scene.RootNode.AddChildNode(pyramidNode);
+        }
+
+        private void AddPlane()
+        {
+            SCNNode planeNode = new SCNNode();
+            planeNode.Geometry = SCNPlane.Create(0.05f, 0.05f);
+            planeNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Green; //Color del objeto
+            planeNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            planeNode.Position = new SCNVector3(0, 0.1f, 0.1f);
+
+            sceneView.Scene.RootNode.AddChildNode(planeNode);
+        }
+
+        private void AddCapsule()
+        {
+            SCNNode capsuleNode = new SCNNode();
+            capsuleNode.Geometry = SCNCapsule.Create(0.1f, 0.3f);
+            capsuleNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Orange; //Color del objeto
+            capsuleNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            capsuleNode.Position = new SCNVector3(-0.1f, -0.1f, 0);
+
+            sceneView.Scene.RootNode.AddChildNode(capsuleNode);
         }
 
         private void AddPath()
@@ -178,73 +259,48 @@ namespace ARExample.iOS.Renderers
             boxNode.AddChildNode(window2);
         }
 
-        private void ShowDistinctNodes()
+        private void AddRelativeNodes()
         {
-            var size = 0.05f;
-            var material = new SCNMaterial();
-            material.Diffuse.Contents = UIColor.Red;
+            SCNNode boxNode = new SCNNode();
+            boxNode.Geometry = SCNBox.Create(0.05f, 0.05f, 0.05f, 0);
+            boxNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Red; //Color del objeto
+            boxNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
+            boxNode.Position = new SCNVector3(0.1f, 0, 0);
 
-            var boxNode = new SCNNode();
-            boxNode.Geometry = SCNBox.Create(size, size, size, 0);
-            boxNode.Geometry.Materials = new SCNMaterial[] { material };
-            boxNode.Position = new SCNVector3(0, 0, 0);
-
-            var sphereNode = new SCNNode();
-            sphereNode.Geometry = SCNSphere.Create(size / 2);
-            sphereNode.Geometry.Materials = new SCNMaterial[] { material };
+            SCNNode sphereNode = new SCNNode();
+            sphereNode.Geometry = SCNSphere.Create(0.05f / 2);
+            sphereNode.Geometry.FirstMaterial.Diffuse.Contents = UIColor.Blue; //Color del objeto
+            sphereNode.Geometry.FirstMaterial.Specular.Contents = UIColor.White; //Color del reflejo
             sphereNode.Position = new SCNVector3(0.1f, 0, 0);
-
-            var torusNode = new SCNNode();
-            torusNode.Geometry = SCNTorus.Create(size / 2, size / 6);
-            torusNode.Geometry.Materials = new SCNMaterial[] { material };
-            torusNode.Position = new SCNVector3(0.1f, 0, 0);
-
-            var tubeNode = new SCNNode();
-            tubeNode.Geometry = SCNTube.Create(size / 2, (size / 2), size * 2);
-            tubeNode.Geometry.Materials = new SCNMaterial[] { material };
-            tubeNode.Position = new SCNVector3(0.1f, 0, 0);
-
-            var coneNode = new SCNNode();
-            coneNode.Geometry = SCNCone.Create(0.01f, (size / 2), size * 2);
-            coneNode.Geometry.Materials = new SCNMaterial[] { material };
-            coneNode.Position = new SCNVector3(0.1f, 0, 0);
-
-            var cylinderNode = new SCNNode();
-            cylinderNode.Geometry = SCNCylinder.Create(size / 2, size);
-            cylinderNode.Geometry.Materials = new SCNMaterial[] { material };
-            cylinderNode.Position = new SCNVector3(01f, 0, 0);
-
-            var pyramidNode = new SCNNode();
-            pyramidNode.Geometry = SCNPyramid.Create(size, size, size);
-            pyramidNode.Geometry.Materials = new SCNMaterial[] { material };
-            pyramidNode.Position = new SCNVector3(0.1f, 0, 0);
-
-            var planeNode = new SCNNode();
-            planeNode.Geometry = SCNPlane.Create(size, size);
-            planeNode.Geometry.Materials = new SCNMaterial[] { material };
-            planeNode.Position = new SCNVector3(0.1f, 0, 0);
-
-            var capsuleNode = new SCNNode();
-            capsuleNode.Geometry = SCNCapsule.Create(0.1f, 0.3f);
-            capsuleNode.Geometry.Materials = new SCNMaterial[] { material };
-            capsuleNode.Position = new SCNVector3(0.1f, 0, 0);
-
 
             sceneView.Scene.RootNode.AddChildNode(boxNode); //Se coloca boxNode en una posición absoluta respecto a rootNode
             boxNode.AddChildNode(sphereNode); //Se coloca sphereNode en una posición relativa a boxNode
-
-            sphereNode.AddChildNode(torusNode);
-            torusNode.AddChildNode(tubeNode);
-            tubeNode.AddChildNode(coneNode);
-            coneNode.AddChildNode(cylinderNode);
-            cylinderNode.AddChildNode(pyramidNode);
-            pyramidNode.AddChildNode(planeNode);
-            planeNode.AddChildNode(capsuleNode);
         }
 
-        private float ConvertDegreesToRadians(float angle)
+        public override void TouchesEnded(NSSet touches, UIEvent evt)
         {
-            return (float)(Math.PI / 180) * angle;
+            //TODO 3.3 Interactuando con elementos de pantalla
+            base.TouchesEnded(touches, evt);
+
+            if (touches.AnyObject is UITouch touch)
+            {
+                CGPoint point = touch.LocationInView(this.sceneView);
+
+                SCNHitTestOptions hitTestOptions = new SCNHitTestOptions();
+
+                SCNHitTestResult[] hits = sceneView.HitTest(point, hitTestOptions);
+                SCNHitTestResult hit = hits.FirstOrDefault();
+
+                if (hit == null)
+                    return;
+
+                SCNNode node = hit.Node;
+
+                if (node == null)
+                    return;
+
+                node.RemoveFromParentNode();
+            }
         }
     }
 }

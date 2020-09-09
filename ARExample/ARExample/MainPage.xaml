@@ -29,5 +29,9 @@
                 Text="Vehicular Physics"
                 Clicked="btVehicularPhysics_Clicked" />
 
+        <Button x:Name="btVirtualPortal"
+                Text="Virtual Portal"
+                Clicked="btVirtualPortal_Clicked" />
+
     </StackLayout>
 </ContentPage>

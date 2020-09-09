@@ -53,6 +53,7 @@ namespace ARExample.iOS.Renderers
 
         public override void DidSimulatePhysics(ISCNSceneRenderer renderer, double timeInSeconds)
         {
+            //TODO 4.4 Moviendo el vehículo
             if (arVehicularPhysicsViewRenderer.PhysicsVehicle != null)
             {
                 System.Diagnostics.Debug.WriteLine(arVehicularPhysicsViewRenderer.Orientation);
@@ -73,7 +74,7 @@ namespace ARExample.iOS.Renderers
             concreteNode.Position = new SCNVector3(planeAnchor.Center.X, planeAnchor.Center.Y, planeAnchor.Center.Z);
             concreteNode.EulerAngles = new SCNVector3(ConvertDegreesToRadians(90), 0, 0);
 
-            //To support other objects
+            //TODO 4.1 Creando superficie
             SCNPhysicsBody staticBody = SCNPhysicsBody.CreateStaticBody();
             concreteNode.PhysicsBody = staticBody;
 

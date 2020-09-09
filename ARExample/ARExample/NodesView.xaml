@@ -22,6 +22,38 @@
                         Text="Add Box"
                         Clicked="BtAddBox_Clicked" />
 
+                <Button x:Name="btAddSphere"
+                        Text="Add Sphere"
+                        Clicked="btAddSphere_Clicked" />
+
+                <Button x:Name="btAddTorus"
+                        Text="Add Torus"
+                        Clicked="btAddTorus_Clicked" />
+
+                <Button x:Name="btAddTube"
+                        Text="Add Tube"
+                        Clicked="btAddTube_Clicked" />
+
+                <Button x:Name="btAddCone"
+                        Text="Add Cone"
+                        Clicked="btAddCone_Clicked" />
+
+                <Button x:Name="btAddCylinder"
+                        Text="Add Cylinder"
+                        Clicked="btAddCylinder_Clicked" />
+
+                <Button x:Name="btAddPyramid"
+                        Text="Add Pyramid"
+                        Clicked="btAddPyramid_Clicked" />
+
+                <Button x:Name="btAddPlane"
+                        Text="Add Plane"
+                        Clicked="btAddPlane_Clicked" />
+
+                <Button x:Name="btAddCapsule"
+                        Text="Add Capsule"
+                        Clicked="btAddCapsule_Clicked" />
+
                 <Button x:Name="btAddPath"
                         Text="Add Path"
                         Clicked="btAddPath_Clicked" />
@@ -29,6 +61,10 @@
                 <Button x:Name="btAddHouse"
                         Text="Add House"
                         Clicked="btAddHouse_Clicked" />
+
+                <Button x:Name="btAddAddRelativeNodes"
+                        Text="Add AddRelativeNodes"
+                        Clicked="btAddAddRelativeNodes_Clicked" />
 
                 <Button x:Name="btReset"
                         Text="Reset"

@@ -91,6 +91,7 @@ namespace ARExample.iOS.Renderers
             SCNVector3 location = new SCNVector3(transform.M41, transform.M42, transform.M43);
             SCNVector3 currentPositionOfCamera = orientation + location;
 
+            //TODO 4.2 Creando el coche
             SCNScene carScene = SCNScene.FromFile("art.scnassets/CarScene.scn");
             SCNNode carNode = carScene.RootNode.FindChildNode("frame", false);
 
@@ -116,6 +117,7 @@ namespace ARExample.iOS.Renderers
             sceneView.Scene.RootNode.AddChildNode(carNode);
         }
 
+        //TODO 4.3 Moviemdo el vehículo
         private void GoLeft()
         {
             Orientation -= 0.1f;
