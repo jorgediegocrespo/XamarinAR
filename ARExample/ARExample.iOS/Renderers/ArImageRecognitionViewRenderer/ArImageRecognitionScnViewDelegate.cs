@@ -16,37 +16,15 @@ namespace ARExample.iOS.Renderers
                 return;
 
             ArImageRecognitionPlaneNode imagePlaneNode = CreateImagePlaneNode(imageAnchor);
-            node.AddChildNode(imagePlaneNode);
-        }
-
-        [Export("renderer:didUpdateNode:forAnchor:")]
-        public override void DidRemoveNode(ISCNSceneRenderer renderer, SCNNode node, ARAnchor anchor)
-        {
-            ARImageAnchor imageAnchor = anchor as ARImageAnchor;
-            if (imageAnchor == null)
-                return;
-
-            foreach (SCNNode chilNode in node.ChildNodes)
-                chilNode.RemoveFromParentNode();
-
-            ArImageRecognitionPlaneNode imagePlaneNode = CreateImagePlaneNode(imageAnchor);
-            node.AddChildNode(imagePlaneNode);
-        }
-
-        [Export("renderer:didRemoveNode:forAnchor:")]
-        public override void DidUpdateNode(ISCNSceneRenderer renderer, SCNNode node, ARAnchor anchor)
-        {
-            ARImageAnchor imageAnchor = anchor as ARImageAnchor;
-            if (imageAnchor == null)
-                return;
-
-            foreach (SCNNode chilNode in node.ChildNodes)
-                chilNode.RemoveFromParentNode();
+            if (imagePlaneNode != null)
+                node.AddChildNode(imagePlaneNode);
         }
 
         private ArImageRecognitionPlaneNode CreateImagePlaneNode(ARImageAnchor imageAnchor)
         {
             ARReferenceImage detectedImage = imageAnchor.ReferenceImage;
+            if (detectedImage.Name != "AR_DevsDNA_Card")
+                return null;
 
             nfloat width = detectedImage.PhysicalSize.Width;
             nfloat length = detectedImage.PhysicalSize.Height;

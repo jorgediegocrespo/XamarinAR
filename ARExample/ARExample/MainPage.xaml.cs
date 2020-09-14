@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using Xamarin.Forms;
+using System;
 
 namespace ARExample
 {
@@ -13,39 +14,44 @@ namespace ARExample
             InitializeComponent();
         }
 
-        private async void btNodes_Clicked(System.Object sender, System.EventArgs e)
+        private async void btNodes_Clicked(Object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NodesView());
         }
 
-        private async void btSolarSistem_Clicked(System.Object sender, System.EventArgs e)
+        private async void btSolarSistem_Clicked(Object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SolarSistemView());
         }
 
-        private async void btGame_Clicked(System.Object sender, System.EventArgs e)
+        private async void btGame_Clicked(Object sender, EventArgs e)
         {
             await Navigation.PushAsync(new GameView());
         }
 
-        private async void btPlane_Clicked(System.Object sender, System.EventArgs e)
+        private async void btPlane_Clicked(Object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PlaneView());
         }
 
-        private async void btIkea_Clicked(System.Object sender, System.EventArgs e)
+        private async void btIkea_Clicked(Object sender, EventArgs e)
         {
             await Navigation.PushAsync(new IkeaView());
         }
 
-        private async void btVehicularPhysics_Clicked(System.Object sender, System.EventArgs e)
+        private async void btVehicularPhysics_Clicked(Object sender, EventArgs e)
         {
             await Navigation.PushAsync(new VehicularPhysicsView());
         }
 
-        private async void btVirtualPortal_Clicked(System.Object sender, System.EventArgs e)
+        private async void btVirtualPortal_Clicked(Object sender, EventArgs e)
         {
             await Navigation.PushAsync(new VirtualPortalView());
+        }
+
+        private async void btImageRecognition_Clicked(Object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ImageRecognitionView());
         }
     }
 }

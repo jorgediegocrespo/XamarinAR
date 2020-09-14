@@ -80,7 +80,7 @@
     <Compile Include="Renderers\ArVirtualPortalViewRenderer\ArVirtualPortalScnViewDelegate.cs" />
     <Compile Include="Renderers\ArImageRecognitionViewRenderer\ArImageRecognitionViewRenderer.cs" />
     <Compile Include="Renderers\ArImageRecognitionViewRenderer\ArImageRecognitionScnViewDelegate.cs" />
-    <Compile Include="Renderers\ArPlaneViewRenderer\ArImageRecognitionPlaneNode.cs" />
+    <Compile Include="Renderers\ArImageRecognitionViewRenderer\ArImageRecognitionPlaneNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -126,6 +126,9 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AR Resources.arresourcegroup\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AR Resources.arresourcegroup\AR_DevsDNA_Card.arreferenceimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AR Resources.arresourcegroup\AR_DevsDNA_Card.arreferenceimage\IMG_1523.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -157,6 +160,7 @@
     <Folder Include="Renderers\ArVehicularPhysicsViewRenderer\" />
     <Folder Include="Renderers\ArVirtualPortalViewRenderer\" />
     <Folder Include="Renderers\ArImageRecognitionViewRenderer\" />
+    <Folder Include="Assets.xcassets\AR Resources.arresourcegroup\AR_DevsDNA_Card.arreferenceimage\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />

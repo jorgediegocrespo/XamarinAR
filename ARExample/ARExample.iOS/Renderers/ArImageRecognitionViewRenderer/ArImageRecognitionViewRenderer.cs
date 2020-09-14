@@ -1,16 +1,16 @@
-﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(ARExample.Controls.ArPlaneView), typeof(ARExample.iOS.Renderers.ArPlaneViewRenderer))]
+﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(ARExample.Controls.ArImageRecognitionView), typeof(ARExample.iOS.Renderers.ArImageRecognitionViewRenderer))]
 namespace ARExample.iOS.Renderers
 {
     using ARExample.Controls;
     using ARKit;
     using Xamarin.Forms.Platform.iOS;
 
-    public class ArImageRecognitionViewRenderer : ViewRenderer<ArPlaneView, ARSCNView>
+    public class ArImageRecognitionViewRenderer : ViewRenderer<ArImageRecognitionView, ARSCNView>
     {
         private ARSCNView sceneView;
         private ARWorldTrackingConfiguration config;
 
-        protected override void OnElementChanged(ElementChangedEventArgs<ArPlaneView> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<ArImageRecognitionView> e)
         {
             base.OnElementChanged(e);
 

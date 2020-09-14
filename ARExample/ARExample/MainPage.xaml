@@ -29,6 +29,10 @@
                 Text="Vehicular Physics"
                 Clicked="btVehicularPhysics_Clicked" />
 
+        <Button x:Name="btImageRecognition"
+                Text="Image Recognition"
+                Clicked="btImageRecognition_Clicked" />
+
         <Button x:Name="btVirtualPortal"
                 Text="Virtual Portal"
                 Clicked="btVirtualPortal_Clicked" />
