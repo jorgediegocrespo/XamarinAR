@@ -95,10 +95,10 @@ namespace ARExample.iOS.Renderers
             float xf = Convert.ToSingle(x);
 
             double y = (double)random.Next(-1000, 1000) / 1000d;
-            float yf = Convert.ToSingle(x);
+            float yf = Convert.ToSingle(y);
 
             double z = (double)random.Next(-1000, 1000) / 1000d;
-            float zf = Convert.ToSingle(x);
+            float zf = Convert.ToSingle(z);
 
             jellyfishNode.Position = new SCNVector3(xf, yf, zf);
             sceneView.Scene.RootNode.AddChildNode(jellyfishNode);

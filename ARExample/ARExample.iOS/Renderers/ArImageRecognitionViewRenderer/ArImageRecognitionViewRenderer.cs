@@ -42,7 +42,7 @@ namespace ARExample.iOS.Renderers
             config?.Dispose();
             sceneView?.Delegate?.Dispose();
 
-            sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints | ARSCNDebugOptions.ShowWorldOrigin;
+            sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints;
 
             config = new ARWorldTrackingConfiguration();
             config.AutoFocusEnabled = true;
