@@ -17,7 +17,7 @@ namespace ARExample.iOS.Renderers
             AddChildNode(rootNode);
         }
 
-        private static SCNGeometry CreateGeometry(nfloat width, nfloat length, UIColor colour)
+        private SCNGeometry CreateGeometry(nfloat width, nfloat length, UIColor colour)
         {
             SCNMaterial material = new SCNMaterial();
             material.Diffuse.Contents = colour;

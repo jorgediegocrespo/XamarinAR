@@ -54,7 +54,7 @@ namespace ARExample.iOS.Renderers
 
             sceneView.Session.Run(config, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
 
-            sceneView.Delegate = new ArImageRecognitionScnViewDelegate();
+            sceneView.Delegate = new ArImageRecognitionScnViewDelegate(Element.Model3D);
 
             //Permite añadir reflejos a los objetos de la escena
             sceneView.AutoenablesDefaultLighting = true;

@@ -53,5 +53,10 @@ namespace ARExample
         {
             await Navigation.PushAsync(new ImageRecognitionView());
         }
+
+        private async void btImageRecognition3D_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ImageRecognition3DView());
+        }
     }
 }

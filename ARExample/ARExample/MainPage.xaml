@@ -33,6 +33,10 @@
                 Text="Image Recognition"
                 Clicked="btImageRecognition_Clicked" />
 
+        <Button x:Name="btImageRecognition3D"
+                Text="Image Recognition 3D"
+                Clicked="btImageRecognition3D_Clicked" />
+
         <Button x:Name="btVirtualPortal"
                 Text="Virtual Portal"
                 Clicked="btVirtualPortal_Clicked" />
