@@ -46,11 +46,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Jorge DevsDNA (8MQLC6YF93)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -69,9 +70,18 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\ArViewRenderer\ArViewRenderer.cs" />
-    <Compile Include="Renderers\ArViewRenderer\CustomArScnViewDelegate.cs" />
     <Compile Include="Renderers\SolarSystemViewRenderer\SolarSystemViewRenderer.cs" />
     <Compile Include="Renderers\ArGameViewRenderer\ArGameViewRenderer.cs" />
+    <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneViewRenderer.cs" />
+    <Compile Include="Renderers\ArIkeaViewRenderer\ArIkeaViewRenderer.cs" />
+    <Compile Include="Renderers\ArPlaneViewRenderer\ArPlaneScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArVehicularPhysicsViewRenderer\ArVehicularPhysicsViewRenderer.cs" />
+    <Compile Include="Renderers\ArVehicularPhysicsViewRenderer\ArVehicularPhysicsScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArVirtualPortalViewRenderer\ArVirtualPortalViewRenderer.cs" />
+    <Compile Include="Renderers\ArVirtualPortalViewRenderer\ArVirtualPortalScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArImageRecognitionViewRenderer\ArImageRecognitionViewRenderer.cs" />
+    <Compile Include="Renderers\ArImageRecognitionViewRenderer\ArImageRecognitionScnViewDelegate.cs" />
+    <Compile Include="Renderers\ArImageRecognitionViewRenderer\ArImageRecognitionPlaneNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -117,6 +127,15 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AR Resources.arresourcegroup\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AR Resources.arresourcegroup\AR_DevsDNA_Card.arreferenceimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AR Resources.arresourcegroup\AR_DevsDNA_Card.arreferenceimage\IMG_1523.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -138,10 +157,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Renderers\" />
-    <Folder Include="Renderers\ArViewRenderer\" />
-    <Folder Include="Renderers\SolarSystemViewRenderer\" />
-    <Folder Include="Renderers\ArGameViewRenderer\" />
+    <Folder Include="Assets.xcassets\AR Resources.arresourcegroup\AR_DevsDNA_Card.arreferenceimage\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monkey1.jpg" />
@@ -152,5 +168,24 @@
     <BundleResource Include="Resources\SunTexture.jpg" />
     <BundleResource Include="Resources\VenusEmission.jpg" />
     <BundleResource Include="Resources\VenusTexture.jpg" />
+    <BundleResource Include="Resources\Lava.png" />
+    <BundleResource Include="Resources\Concrete.png" />
+    <BundleResource Include="Resources\portalBack.png" />
+    <BundleResource Include="Resources\portalBottom.png" />
+    <BundleResource Include="Resources\portalSideA.png" />
+    <BundleResource Include="Resources\portalSideB.png" />
+    <BundleResource Include="Resources\portalSideDoorA.png" />
+    <BundleResource Include="Resources\portalSideDoorB.png" />
+    <BundleResource Include="Resources\portalTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <SceneKitAsset Include="art.scnassets\Jellyfish.dae" />
+    <SceneKitAsset Include="art.scnassets\Jellyfish.png" />
+    <SceneKitAsset Include="art.scnassets\boxing.scn" />
+    <SceneKitAsset Include="art.scnassets\cup.scn" />
+    <SceneKitAsset Include="art.scnassets\table.scn" />
+    <SceneKitAsset Include="art.scnassets\vase.scn" />
+    <SceneKitAsset Include="art.scnassets\CarScene.scn" />
+    <SceneKitAsset Include="art.scnassets\Portal.scn" />
   </ItemGroup>
 </Project>

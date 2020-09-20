@@ -17,4 +17,9 @@
   <ItemGroup>
     <Folder Include="Controls\" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="ImageRecognition3DView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
