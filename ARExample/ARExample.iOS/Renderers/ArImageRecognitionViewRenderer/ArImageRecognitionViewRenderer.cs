@@ -44,6 +44,7 @@ namespace ARExample.iOS.Renderers
 
             sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints;
 
+            //TODO 6.1 Configurando detección de imágenes
             config = new ARWorldTrackingConfiguration();
             config.AutoFocusEnabled = true;
             config.PlaneDetection = ARPlaneDetection.Horizontal | ARPlaneDetection.Vertical;

@@ -22,6 +22,7 @@ namespace ARExample.iOS.Renderers
             if (imageAnchor == null)
                 return;
 
+            //TODO 6.2 Añadiendo elementos sobre la imagen detectada
             ARReferenceImage detectedImage = imageAnchor.ReferenceImage;
             if (detectedImage.Name != "AR_DevsDNA_Card")
                 return;
@@ -35,9 +36,6 @@ namespace ARExample.iOS.Renderers
             nfloat length = detectedImage.PhysicalSize.Height;
             ArImageRecognitionPlaneNode imagePlaneNode = new ArImageRecognitionPlaneNode(width, length, new SCNVector3(0, 0, 0), UIColor.Blue);
 
-            //float angle = (float)(-Math.PI / 2);
-            //imagePlaneNode.EulerAngles = new SCNVector3(angle, 0, 0);
-
             return imagePlaneNode;
         }
 
@@ -48,8 +46,6 @@ namespace ARExample.iOS.Renderers
 
             jellyfishNode.Scale = new SCNVector3(0.019f, 0.019f, 0.019f);
             jellyfishNode.Position = new SCNVector3(0, 0, 0);
-            //float angle = (float)(-Math.PI / 2);
-            //jellyfishNode.EulerAngles = new SCNVector3(angle, angle, 0);
 
             // Animate the opacity to 100% over 0.75 seconds
             jellyfishNode.Opacity = 0;
