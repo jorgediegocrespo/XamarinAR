@@ -1,17 +1,16 @@
-﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(ARExample.Controls.ArPlaneView), typeof(ARExample.iOS.Renderers.ArPlaneViewRenderer))]
+﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(ARExample.Controls.ArImageRecognitionView), typeof(ARExample.iOS.Renderers.ArImageRecognitionViewRenderer))]
 namespace ARExample.iOS.Renderers
 {
-    using System.ComponentModel;
     using ARExample.Controls;
     using ARKit;
     using Xamarin.Forms.Platform.iOS;
 
-    public class ArPlaneViewRenderer : ViewRenderer<ArPlaneView, ARSCNView>
+    public class ArImageRecognitionViewRenderer : ViewRenderer<ArImageRecognitionView, ARSCNView>
     {
         private ARSCNView sceneView;
         private ARWorldTrackingConfiguration config;
 
-        protected override void OnElementChanged(ElementChangedEventArgs<ArPlaneView> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<ArImageRecognitionView> e)
         {
             base.OnElementChanged(e);
 
@@ -43,14 +42,23 @@ namespace ARExample.iOS.Renderers
             config?.Dispose();
             sceneView?.Delegate?.Dispose();
 
+            sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints;
+
+            //TODO 6.1 Configurando detección de imágenes
             config = new ARWorldTrackingConfiguration();
-            sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints | ARSCNDebugOptions.ShowWorldOrigin;
-            config.PlaneDetection = ARPlaneDetection.Horizontal;
+            config.AutoFocusEnabled = true;
+            config.PlaneDetection = ARPlaneDetection.Horizontal | ARPlaneDetection.Vertical;
+            config.LightEstimationEnabled = true;
+            config.WorldAlignment = ARWorldAlignment.GravityAndHeading;
+            config.DetectionImages = ARReferenceImage.GetReferenceImagesInGroup("AR Resources", null); ;
+            config.MaximumNumberOfTrackedImages = 1;
+
             sceneView.Session.Run(config, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
-            sceneView.Delegate = new ArPlaneScnViewDelegate(sceneView);
+
+            sceneView.Delegate = new ArImageRecognitionScnViewDelegate(Element.Model3D);
 
             //Permite añadir reflejos a los objetos de la escena
-            sceneView.AutoenablesDefaultLighting = true;            
+            sceneView.AutoenablesDefaultLighting = true;
         }
 
         private void PauseSession()

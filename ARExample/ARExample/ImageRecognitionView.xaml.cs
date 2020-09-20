@@ -2,9 +2,9 @@
 
 namespace ARExample
 {
-    public partial class PlaneView : ContentPage
+    public partial class ImageRecognitionView : ContentPage
     {
-        public PlaneView()
+        public ImageRecognitionView()
         {
             InitializeComponent();
         }

@@ -279,7 +279,7 @@ namespace ARExample.iOS.Renderers
 
         public override void TouchesEnded(NSSet touches, UIEvent evt)
         {
-            //TODO 3.3 Interactuando con elementos de pantalla
+            //TODO 2.2 Interactuando con elementos de pantalla
             base.TouchesEnded(touches, evt);
 
             if (touches.AnyObject is UITouch touch)
